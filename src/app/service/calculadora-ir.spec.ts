@@ -9,9 +9,16 @@ describe('CalculadoraIR', () => {
     });
   });
 
-  it('Base PM test', inject([CalculadoraIR], (calculadoraIR: CalculadoraIR) => {
+  it('Update PM with zero values', inject([CalculadoraIR], (calculadoraIR: CalculadoraIR) => {
     const operacaoAberta: Operacao = new Operacao();
     calculadoraIR.atualizarPM(operacaoAberta, new Operacao());
-    expect(operacaoAberta.precoMedio).toEqual(0)
+    expect(operacaoAberta.custoAcoes).toEqual(0)
+  }));
+
+  it('Update PM default', inject([CalculadoraIR], (calculadoraIR: CalculadoraIR) => {
+    const operacaoAberta: Operacao = new Operacao({ custoAcoes: 1000, qtd: 100 });
+    calculadoraIR.atualizarPM(operacaoAberta, new Operacao({ custoAcoes: 5, qtd: 200 }));
+    expect(operacaoAberta.custoAcoes).toEqual(2000 / 300)
+    expect(operacaoAberta.qtd).toEqual(300)
   }));
 });
