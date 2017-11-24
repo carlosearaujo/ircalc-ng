@@ -1,0 +1,41 @@
+<div class="ui-g container-wrapper">
+  <form class = "ui-g-12">
+    <span class = "ui-g-1">
+      <span class="ui-g-12 no-pad-hor">Data Operação</span>
+      <p-inputMask
+        size="10" 
+        mask="99/99/2099" slotChar="mm/dd/yyyy"
+        [(ngModel)] = "operacao.date"
+        [ngModelOptions]="{standalone: true}"> </p-inputMask>
+    </span>
+
+    <div class = "ui-g-1">
+      <span class="ui-g-12 no-pad-hor">Ticket</span>
+      <input 
+        [(ngModel)] = "operacao.ticket" [ngModelOptions]="{standalone: true}"
+        pInputText size = "10" />
+    </div>
+
+    <div class = "ui-g-1">
+        <span class="ui-g-12 no-pad-hor">Tipo</span>
+        <p-dropdown [options] = "[ {tipo: 'C'}, {tipo: 'V'}]" optionLabel="tipo"></p-dropdown>
+    </div>
+
+    <div class = "ui-g-1">
+        <span class="ui-g-12 no-pad-hor">Valor</span>
+        <input 
+          [(ngModel)] = "operacao.price" [ngModelOptions]="{standalone: true}"
+          pInputText size = "10" />
+    </div>
+
+    <div class = "ui-g-2">
+        <span class="ui-g-12 no-pad-hor">Qtd</span>
+        <input 
+          [(ngModel)] = "operacao.quantity" [ngModelOptions]="{standalone: true}"
+          pInputText type = "number" size = "10" />
+    </div>
+    <div class="ui-g-1">
+      <button type="button" icon="fa fa-floppy-o" pButton (click) = "salvarOperacao()"></button>
+    </div>
+  </form>
+</div>
