@@ -18,13 +18,16 @@
 
     <div class = "ui-g-1">
         <span class="ui-g-12 no-pad-hor">Tipo</span>
-        <p-dropdown [options] = "[ {tipo: 'C'}, {tipo: 'V'}]" optionLabel="tipo"></p-dropdown>
+        <p-dropdown 
+          [options] = "getMarketDirections()" 
+          optionLabel="value" 
+          (onChange) = "operacao.marketDirection = $event.value.value"></p-dropdown>
     </div>
 
     <div class = "ui-g-1">
         <span class="ui-g-12 no-pad-hor">Valor</span>
         <input 
-          [(ngModel)] = "operacao.price" [ngModelOptions]="{standalone: true}"
+          [(ngModel)] = "operacao.pricePerUnit" [ngModelOptions]="{standalone: true}"
           pInputText size = "10" />
     </div>
 
@@ -34,6 +37,21 @@
           [(ngModel)] = "operacao.quantity" [ngModelOptions]="{standalone: true}"
           pInputText type = "number" size = "10" />
     </div>
+
+    <div class = "ui-g-1">
+        <span class="ui-g-12 no-pad-hor">Corretagem</span>
+        <input 
+          [(ngModel)] = "operacao.brokerTax" [ngModelOptions]="{standalone: true}"
+          pInputText size = "10" />
+    </div>
+
+    <div class = "ui-g-1">
+        <span class="ui-g-12 no-pad-hor">Imposto sobre corretagem</span>
+        <input 
+          [(ngModel)] = "operacao.brokerTaxFee" [ngModelOptions]="{standalone: true}"
+          pInputText size = "10" />
+    </div>
+
     <div class="ui-g-1">
       <button type="button" icon="fa fa-floppy-o" pButton (click) = "salvarOperacao()"></button>
     </div>

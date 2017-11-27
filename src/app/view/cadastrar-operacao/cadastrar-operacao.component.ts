@@ -1,5 +1,7 @@
+
+import { ObjectUtils } from './../../object-utils';
 import { OperacaoService } from 'app/service';
-import { Operacao } from 'app/model';
+import { Operacao, MarketDirection } from 'app/model';
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http'
 
@@ -11,9 +13,9 @@ import { Http } from '@angular/http'
 })
 export class CadastrarOperacaoComponent implements OnInit {
 
-  operacao: Operacao = new Operacao();
+  operacao: Operacao = new Operacao({marketDirection: this.getMarketDirections()[0].value});
 
-  constructor(private service: OperacaoService) { }
+  constructor(private service: OperacaoService, private utils: ObjectUtils) { }
 
   ngOnInit() {
   }
@@ -22,6 +24,10 @@ export class CadastrarOperacaoComponent implements OnInit {
     this.service.save(this.operacao).subscribe(res => {
       console.log(res)
     })
+  }
+
+  getMarketDirections(){
+    return this.utils.getEnumValues(MarketDirection);
   }
 
 }

@@ -1,3 +1,4 @@
+import { ObjectUtils } from './object-utils';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -20,7 +21,7 @@ import { HttpModule } from '@angular/http';
     BrowserModule, AppRoutingModule, FormsModule, HttpModule,
     InputTextModule, DropdownModule,  InputMaskModule, BrowserAnimationsModule, ButtonModule
   ],
-  providers: [],
+  providers: [ObjectUtils],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

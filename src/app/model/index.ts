@@ -1,4 +1,4 @@
-export * from './enums/market';
+export * from './enums/market-type';
 export * from './operacao';
-export * from './enums/trade-type';
+export * from './enums/market-direction';
 export * from './custos/custo'
