@@ -7,7 +7,7 @@ import { InputTextModule, InputMaskModule, DropdownModule, ButtonModule } from '
 import { AppComponent } from './app.component';
 import { CalculadoraIRComponent } from './view/calculadora-ir/calculadora-ir.component';
 import { CadastrarOperacaoComponent } from './view/cadastrar-operacao/cadastrar-operacao.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpModule } from '@angular/http';
 
@@ -18,7 +18,7 @@ import { HttpModule } from '@angular/http';
     CadastrarOperacaoComponent
   ],
   imports: [
-    BrowserModule, AppRoutingModule, FormsModule, HttpModule,
+    BrowserModule, AppRoutingModule, FormsModule, HttpModule, ReactiveFormsModule,
     InputTextModule, DropdownModule,  InputMaskModule, BrowserAnimationsModule, ButtonModule
   ],
   providers: [ObjectUtils],

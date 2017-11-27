@@ -1,59 +1,75 @@
 <div class="ui-g container-wrapper">
-  <form class = "ui-g-12">
-    <span class = "ui-g-1">
-      <span class="ui-g-12 no-pad-hor">Data Operação</span>
+  <form 
+    (ngSubmit) = "salvarOperacao()"
+    class = "ui-g-12" [formGroup] = "_form">
+    <div class = "pad-rig">
+      <p>Data Operação</p>
       <p-inputMask
         size="10" 
         mask="99/99/2099" slotChar="mm/dd/yyyy"
         [(ngModel)] = "operacao.date"
-        [ngModelOptions]="{standalone: true}"> </p-inputMask>
-    </span>
+        formControlName = "date"> </p-inputMask>
+    </div>
 
-    <div class = "ui-g-1">
-      <span class="ui-g-12 no-pad-hor">Ticket</span>
+    <div  class = "pad-rig">
+      <p>Ticket</p>
       <input 
-        [(ngModel)] = "operacao.ticket" [ngModelOptions]="{standalone: true}"
+        [(ngModel)] = "operacao.ticket"
+        formControlName = "ticket"
         pInputText size = "10" />
     </div>
 
-    <div class = "ui-g-1">
-        <span class="ui-g-12 no-pad-hor">Tipo</span>
+    <div class = "pad-rig">
+      <p>Mercado</p>
+      <p-dropdown 
+        [options] = "getMarketType()" 
+        optionLabel="value"
+        [(ngModel)] = "selectedMarketType" [ngModelOptions]="{standalone: true}">
+      </p-dropdown>
+    </div>
+
+    <div class = "pad-rig">
+        <p>Tipo</p>
         <p-dropdown 
           [options] = "getMarketDirections()" 
           optionLabel="value" 
-          (onChange) = "operacao.marketDirection = $event.value.value"></p-dropdown>
+          [(ngModel)] = "selectedMarketDirection" [ngModelOptions]="{standalone: true}">
+        </p-dropdown>
     </div>
 
-    <div class = "ui-g-1">
-        <span class="ui-g-12 no-pad-hor">Valor</span>
+    <div class = "pad-rig">
+        <p>Valor</p>
+        <p-inputMask
+          mask = "99.99"
+          formControlName = "pricePerUnit"
+          [(ngModel)] = "operacao.pricePerUnit"
+          size = "10"></p-inputMask>
+    </div>
+
+    <div class = "pad-rig">
+        <p>Qtd</p>
         <input 
-          [(ngModel)] = "operacao.pricePerUnit" [ngModelOptions]="{standalone: true}"
+          formControlName = "qtd"
+          [(ngModel)] = "operacao.quantity"
           pInputText size = "10" />
     </div>
 
-    <div class = "ui-g-2">
-        <span class="ui-g-12 no-pad-hor">Qtd</span>
-        <input 
-          [(ngModel)] = "operacao.quantity" [ngModelOptions]="{standalone: true}"
-          pInputText type = "number" size = "10" />
-    </div>
-
-    <div class = "ui-g-1">
-        <span class="ui-g-12 no-pad-hor">Corretagem</span>
-        <input 
+    <div class = "pad-rig">
+        <p>Corretagem</p>
+        <input
           [(ngModel)] = "operacao.brokerTax" [ngModelOptions]="{standalone: true}"
           pInputText size = "10" />
     </div>
 
-    <div class = "ui-g-1">
-        <span class="ui-g-12 no-pad-hor">Imposto sobre corretagem</span>
+    <div class = "pad-rig">
+        <p>ISS (Corretagem)</p>
         <input 
           [(ngModel)] = "operacao.brokerTaxFee" [ngModelOptions]="{standalone: true}"
           pInputText size = "10" />
     </div>
 
-    <div class="ui-g-1">
-      <button type="button" icon="fa fa-floppy-o" pButton (click) = "salvarOperacao()"></button>
+    <div>
+      <button type="submit" icon="fa fa-floppy-o" pButton></button>
     </div>
   </form>
 </div>

@@ -4,7 +4,7 @@ export class Operacao {
 
     date: Date;
     ticket: String;
-    pricePerUnit = 0;
+    pricePerUnit;
     quantity =  0;
     marketDirection: MarketDirection;
     marketType: MarketType = MarketType.DEFAULT;
