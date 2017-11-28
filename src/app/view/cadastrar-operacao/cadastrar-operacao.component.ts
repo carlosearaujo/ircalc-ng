@@ -3,13 +3,13 @@ import { OperacaoService } from 'app/service';
 import { Operacao, MarketDirection, MarketType } from 'app/model';
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http'
-import { FormBuilder, Validators, FormGroup, FormControl } from "@angular/forms";
+import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastrar-operacao',
   templateUrl: './cadastrar-operacao.component.html',
   styleUrls: ['./cadastrar-operacao.component.scss'],
-  providers: [OperacaoService, FormBuilder]
+  providers: [FormBuilder]
 })
 export class CadastrarOperacaoComponent implements OnInit {
 
@@ -28,17 +28,17 @@ export class CadastrarOperacaoComponent implements OnInit {
       'date': ['', Validators.required],
       'ticket': ['', Validators.required]
     })
-    for (var i in this._form.controls) {
+    for (let i in this._form.controls) {
       this._form.controls[i].markAsTouched();
     }
   }
 
   salvarOperacao() {
-    if(this._form.valid){
+    if (this._form.valid) {
       const that = this;
       this.operacao.marketDirection = this.selectedMarketDirection.value;
       this.operacao.marketType = this.selectedMarketType.value;
-      if(this.operacao.ticket.endsWith('F')){
+      if (this.operacao.ticket.endsWith('F')) {
         this.operacao.ticket = this.operacao.ticket.substring(0, this.operacao.ticket.length - 1)
       }
       this.service.save(this.operacao).subscribe(res => {
@@ -46,27 +46,27 @@ export class CadastrarOperacaoComponent implements OnInit {
         that.operacao = new Operacao()
       })
     }
-    else{
-      this.validateAllFields(this._form); 
+    else {
+      this.validateAllFields(this._form);
     }
   }
 
-  validateAllFields(formGroup: FormGroup) {         
-    Object.keys(formGroup.controls).forEach(field => {  
-        const control = formGroup.get(field);            
-        if (control instanceof FormControl) {             
+  validateAllFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+        const control = formGroup.get(field);
+        if (control instanceof FormControl) {
             control.markAsTouched({ onlySelf: true });
-        } else if (control instanceof FormGroup) {        
-            this.validateAllFields(control);  
+        } else if (control instanceof FormGroup) {
+            this.validateAllFields(control);
         }
     });
-} 
+  }
 
-  getMarketDirections(){
+  getMarketDirections() {
     return this.utils.getEnumValues(MarketDirection);
   }
 
-  getMarketType(){
+  getMarketType() {
     return this.utils.getEnumValues(MarketType);
   }
 

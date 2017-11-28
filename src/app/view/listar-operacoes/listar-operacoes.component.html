@@ -1,0 +1,14 @@
+<div class = "ui-g">
+  <div class = "ui-g-12 flex">
+    <b class = "pad-rig">Período: </b> 
+    <p-calendar 
+      [showIcon]="true" [(ngModel)]="rangeDates" dateFormat="dd/mm/yy"
+      selectionMode="range" readonlyInput="true"
+      (onSelect) = "find()">
+    </p-calendar>
+  </div>
+  <p-dataTable class = "ui-g-12" [value] = "trades">
+    <p-column field="ticket" header="Ticket"></p-column>
+    <p-column field="date" header="Data"></p-column>
+  </p-dataTable>
+</div>
