@@ -10,6 +10,7 @@ export class ListarOperacoesComponent implements OnInit {
 
   private rangeDates: Date[];
   private trades;
+  private showAll;
 
   constructor(private service: OperacaoService) { }
 
@@ -25,7 +26,10 @@ export class ListarOperacoesComponent implements OnInit {
   }
 
   find(): any {
-    if (this.rangeDates[0] && this.rangeDates[1]) {
+    if (this.showAll) {
+      this.service.findAll().subscribe(res => this.trades = res);
+    }
+    else if (this.rangeDates[0] && this.rangeDates[1]) {
       this.service.getTradesInDateRange(this.rangeDates).subscribe(res =>  this.trades = res);
     }
   }

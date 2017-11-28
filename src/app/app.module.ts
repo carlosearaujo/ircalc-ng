@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { InputTextModule, InputMaskModule, DropdownModule,
-         ButtonModule, DataTableModule, SharedModule, CalendarModule } from 'primeng/primeng';
+         ButtonModule, DataTableModule, SharedModule, CalendarModule, CheckboxModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { CalculadoraIRComponent } from './view/calculadora-ir/calculadora-ir.component';
@@ -25,7 +25,7 @@ import { ListarOperacoesComponent } from './view/listar-operacoes/listar-operaco
     BrowserModule, AppRoutingModule, FormsModule, HttpModule, ReactiveFormsModule,
 
     InputTextModule, DropdownModule,  InputMaskModule, BrowserAnimationsModule, ButtonModule,
-    DataTableModule, SharedModule, CalendarModule
+    DataTableModule, SharedModule, CalendarModule, CheckboxModule
   ],
   providers: [ObjectUtils, OperacaoService],
   bootstrap: [AppComponent]

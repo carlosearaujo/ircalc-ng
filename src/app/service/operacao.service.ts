@@ -20,7 +20,15 @@ export class OperacaoService {
     const selection = [ { field: 'date', value: moment(dateRange[0]).format('DD/MM/YYYY'), operator: 'BIGEQTHAN'},
                         { field: 'date', value: moment(dateRange[1]).format('DD/MM/YYYY'), operator: 'BIGEQTHAN'} ]
     const spec = { selection: selection , projection: projection ? projection : ['this.All'] }
-    return this.http.post(this.BASE_URL + '/find', spec).map(res => res.json())
+    return this.find(spec)
+  }
+
+  find(spec?): Observable<Operacao> {
+    return this.http.post(this.BASE_URL + '/find', spec ? spec : {}).map(res => res.json())
+  }
+
+  findAll(): Observable<Operacao>{
+    return this.find();
   }
 
 }
