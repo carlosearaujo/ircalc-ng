@@ -18,8 +18,8 @@ export class OperacaoService {
 
   getTradesInDateRange(dateRange: Date[], projection?: any): Observable<Operacao> {
     const selection = [ { field: 'date', value: moment(dateRange[0]).format('DD/MM/YYYY'), operator: 'BIGEQTHAN'},
-                        { field: 'date', value: moment(dateRange[1]).format('DD/MM/YYYY'), operator: 'BIGEQTHAN'} ]
-    const spec = { selection: selection , projection: projection ? projection : ['this.All'] }
+                        { field: 'date', value: moment(dateRange[1]).format('DD/MM/YYYY'), operator: 'LESSEQTHAN'} ]
+    const spec = { selection: selection , projection: projection ? projection : ['this.All', 'marketType', 'marketDirection'] }
     return this.find(spec)
   }
 
@@ -27,8 +27,8 @@ export class OperacaoService {
     return this.http.post(this.BASE_URL + '/find', spec ? spec : {}).map(res => res.json())
   }
 
-  findAll(): Observable<Operacao>{
-    return this.find();
+  findAll(projection?): Observable<Operacao>{
+    return this.find({ projection: projection ? projection : ['this.All', 'marketType', 'marketDirection'] });
   }
 
 }

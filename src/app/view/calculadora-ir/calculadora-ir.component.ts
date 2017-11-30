@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ListarOperacoesComponent } from './../listar-operacoes/listar-operacoes.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-calculadora-ir',
@@ -9,7 +10,13 @@ export class CalculadoraIRComponent implements OnInit {
 
   constructor() { }
 
+  @ViewChild(ListarOperacoesComponent) listarOperacoes: ListarOperacoesComponent;
+
   ngOnInit() {
+  }
+
+  updateList(){
+    this.listarOperacoes.find();
   }
 
 }

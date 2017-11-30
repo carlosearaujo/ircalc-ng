@@ -1,7 +1,7 @@
 <div class = "ui-g">
   <div class = "ui-g-12 flex">
     <b class = "pad-rig">Período: </b>
-    <div class = "ui-g-2"> 
+    <div style="margin-right: 4vw"> 
       <p-calendar 
         [showIcon]="true" [(ngModel)]="rangeDates" dateFormat="dd/mm/yy"
         selectionMode="range" readonlyInput="true"
@@ -13,8 +13,27 @@
       binary="true" (onChange) = "find()">
     </p-checkbox>
   </div>
-  <p-dataTable class = "ui-g-12" [value] = "trades">
+  <p-dataTable class = "ui-g-12" [value] = "trades" [scrollable]="true" scrollHeight="20vh">
     <p-column field="ticket" header="Ticket"></p-column>
     <p-column field="date" header="Data"></p-column>
+    <p-column field="marketType" header="Tipo"></p-column>
+    <p-column field="marketDirection" header="B / S"></p-column>
+    <p-column field="pricePerUnit" header="Valor"></p-column>
+    <p-column field="quantity" header="Quantidade"></p-column>
+    <p-column header="Custo Ações">
+      <ng-template let-obj = "rowData" pTemplate = "body">
+        {{ obj.pricePerUnit * obj.quantity | number : '1.2-2'}}
+      </ng-template>
+    </p-column>
+    <p-column header="Total Taxas">
+      <ng-template let-obj = "rowData" pTemplate = "body">
+        {{ obj.totalFees | number : '1.2-2'}}
+      </ng-template>
+    </p-column>
+    <p-column header="Preço Inc. Taxas">
+      <ng-template let-obj = "rowData" pTemplate = "body">
+        {{ obj.finalPrice | number : '1.2-2'}}
+      </ng-template>
+    </p-column>
   </p-dataTable>
 </div>

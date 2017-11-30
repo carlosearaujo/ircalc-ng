@@ -1,9 +1,10 @@
 import { ObjectUtils } from './../../object-utils';
 import { OperacaoService } from 'app/service';
 import { Operacao, MarketDirection, MarketType } from 'app/model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Http } from '@angular/http'
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-cadastrar-operacao',
@@ -12,6 +13,8 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
   providers: [FormBuilder]
 })
 export class CadastrarOperacaoComponent implements OnInit {
+
+  @Output() onSave = new EventEmitter();
 
   private selectedMarketDirection = this.getMarketDirections()[0];
   private selectedMarketType = this.getMarketType()[0];
@@ -42,7 +45,7 @@ export class CadastrarOperacaoComponent implements OnInit {
         this.operacao.ticket = this.operacao.ticket.substring(0, this.operacao.ticket.length - 1)
       }
       this.service.save(this.operacao).subscribe(res => {
-        console.log(res)
+        this.onSave.emit(null)
         that.operacao = new Operacao()
       })
     }
