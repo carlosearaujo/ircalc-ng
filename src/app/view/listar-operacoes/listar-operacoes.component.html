@@ -13,7 +13,7 @@
       binary="true" (onChange) = "find()">
     </p-checkbox>
   </div>
-  <p-dataTable class = "ui-g-12" [value] = "trades" [scrollable]="true" scrollHeight="20vh">
+  <p-dataTable class = "ui-g-12" [value] = "trades" [scrollable]="true" scrollHeight="30vh">
     <p-column field="ticket" header="Ticket"></p-column>
     <p-column field="date" header="Data"></p-column>
     <p-column field="marketType" header="Tipo"></p-column>
@@ -25,7 +25,7 @@
         {{ obj.pricePerUnit * obj.quantity | number : '1.2-2'}}
       </ng-template>
     </p-column>
-    <p-column header="Total Taxas">
+    <p-column header="Total Corretagem + Taxas">
       <ng-template let-obj = "rowData" pTemplate = "body">
         {{ obj.totalFees | number : '1.2-2'}}
       </ng-template>
