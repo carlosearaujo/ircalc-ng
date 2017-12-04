@@ -25,14 +25,14 @@
         {{ obj.pricePerUnit * obj.quantity | number : '1.2-2'}}
       </ng-template>
     </p-column>
-    <p-column header="Total Corretagem + Taxas">
+    <p-column header="Corretagem + ISS">
       <ng-template let-obj = "rowData" pTemplate = "body">
-        {{ obj.totalFees | number : '1.2-2'}}
+        {{ obj.totalBrokerCost | number : '1.2-2'}}
       </ng-template>
     </p-column>
     <p-column header="Preço Inc. Taxas">
       <ng-template let-obj = "rowData" pTemplate = "body">
-        {{ obj.finalPrice | number : '1.2-2'}}
+        {{ obj.priceAfterBrokerFees | number : '1.2-2'}}
       </ng-template>
     </p-column>
   </p-dataTable>

@@ -1,4 +1,4 @@
-import { MarketType, MarketDirection, Custo } from 'app/model';
+import { MarketType, MarketDirection } from 'app/model';
 
 export class Operacao {
 
